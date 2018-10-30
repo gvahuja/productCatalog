@@ -1,16 +1,21 @@
 import React from 'react';
 import { Grid, Col, Row } from 'react-bootstrap';
 import Header from './Header';
+import Sidebar from './Sidebar';
 
 const Main = () => (
-  <Grid fluid>
-    <Row>
-      <Col xs={2}>
-        <code>sidebar</code>
+  <Grid fluid style={{ height: '100%' }}>
+    <Row style={{ height: '100%' }}>
+      <Col xs={2} style={{ height: '100%' }}>
+        <Sidebar />
       </Col>
       <Col xs={10}>
-        <Header heading="Catalog Manager" />
-        <code>Main Content</code>
+        <Row style={{ backgroundColor: '#000000', color: '#eeeeee' }}>
+          <Header heading="Catalog Manager" />
+        </Row>
+        <Row>
+          <code>Main Content</code>
+        </Row>
       </Col>
     </Row>
   </Grid>
