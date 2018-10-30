@@ -1,10 +1,11 @@
 import React from 'react';
+import { Grid } from 'react-bootstrap';
 import Main from './Main';
 
 const App = () => (
-  <div className="App">
+  <Grid fluid className="App">
     <Main />
-  </div>
+  </Grid>
 );
 
 export default App;
