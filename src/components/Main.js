@@ -19,7 +19,7 @@ const Main = () => (
           <Row className="color-theme">
             <Header heading="Catalog Manager" />
           </Row>
-          <Row>
+          <Row className="full-height">
             <Route path="/" component={ProductsList} />
           </Row>
         </Col>

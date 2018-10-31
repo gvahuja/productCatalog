@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from './Product';
+import './Styles.css';
 
 const products = [
   {
@@ -19,7 +20,7 @@ const products = [
 ];
 
 const ProductsList = () => (
-  <div>
+  <div className="scrollable">
     {
       products.map(product => (
         <Product product={product} key={product.sku} />
