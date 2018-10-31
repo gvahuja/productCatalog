@@ -4,14 +4,14 @@ import './Styles.css';
 
 const products = [
   {
-    sku: 'BIS1006',
+    sku: 'bis1006',
     productName: 'Bisleri 500ml',
     mrp: '10',
     img: './assets/bis1006.png',
-    Description: 'Bisleri 500ml',
+    description: 'Bisleri 500ml',
   },
   {
-    sku: 'BIS1007',
+    sku: 'bis1007',
     productName: 'Bisleri 1000ml',
     mrp: '20',
     img: '../assets/bis1007.png',

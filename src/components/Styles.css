@@ -29,3 +29,12 @@
   max-height: 90vh;
   overflow-y: scroll;
 }
+
+.flex-style {
+  display: flex;
+  align-items: center;
+}
+
+.form-group-style {
+  margin-bottom: 10px;
+}
