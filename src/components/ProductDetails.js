@@ -149,6 +149,8 @@ class ProductDetails extends React.Component {
 ProductDetails.propTypes = {
   show: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
+  state: PropTypes.string.isRequired,
+  details: PropTypes.shape({}).isRequired,
 };
 
 export default ProductDetails;

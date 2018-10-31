@@ -31,6 +31,7 @@ const Product = (props) => {
 
 Product.propTypes = {
   product: PropTypes.shape({}).isRequired,
+  handleState: PropTypes.func.isRequired,
 };
 
 export default Product;
