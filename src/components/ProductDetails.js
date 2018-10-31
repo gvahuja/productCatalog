@@ -9,12 +9,20 @@ class ProductDetails extends React.Component {
   constructor() {
     super();
     this.state = {
-      sku: 'bis1006',
-      productName: 'Bisleri 500ml',
-      mrp: '10',
-      img: './assets/bis1006.png',
-      description: 'Bisleri 500ml',
+      sku: '',
+      productName: '',
+      mrp: '0',
+      img: '',
+      description: '',
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event, id) {
+    const { value } = event.target;
+    this.setState({
+      [id]: value,
+    });
   }
 
   render() {
@@ -32,22 +40,22 @@ class ProductDetails extends React.Component {
           <Modal.Body className="col-xs-12">
             <Col xs={12} className="form-group-style">
               <FieldGroup
+                id="productName"
+                label="Product Name"
+                type="text"
+                value={productName}
+                placeholder="Enter Product Name"
+                onChange={event => this.handleChange(event, 'productName')}
+              />
+            </Col>
+            <Col xs={6} className="form-group-style">
+              <FieldGroup
                 id="sku"
                 label="Stock Keeping Unit Code"
                 type="text"
                 value={sku}
                 placeholder="Enter Stock Keeping Unit Code"
-                // onChange={event => this.handleChange(event, 'issueTitle')}
-              />
-            </Col>
-            <Col xs={6} className="form-group-style">
-              <FieldGroup
-                id="name"
-                label="Product Name"
-                type="text"
-                value={productName}
-                placeholder="Enter Product Name"
-                // onChange={event => this.handleChange(event, 'issueLabels')}
+                onChange={event => this.handleChange(event, 'sku')}
               />
             </Col>
             <Col xs={6} className="form-group-style">
@@ -57,13 +65,13 @@ class ProductDetails extends React.Component {
                 type="text"
                 value={mrp}
                 placeholder="Enter M.R.P"
-                // onChange={event => this.handleChange(event, 'issueAssignee')}
+                onChange={event => this.handleChange(event, 'mrp')}
               />
             </Col>
             <Col xs={6} className="form-group-style">
               <FieldGroup
                 id="img"
-                label="Upload Image"
+                label="Upload Product Image"
                 type="file"
                 // value={img}
                 // placeholder=""
@@ -72,7 +80,7 @@ class ProductDetails extends React.Component {
             </Col>
             <Col xs={12} className="form-group-style">
               <FormGroup
-                controlId="issueDescription"
+                controlId="description"
               >
                 <ControlLabel>Description</ControlLabel>
                 <textarea
@@ -80,7 +88,7 @@ class ProductDetails extends React.Component {
                   row={5}
                   value={description}
                   placeholder="Add Description"
-                  onChange={event => this.handleChange(event, 'issueDescription')}
+                  onChange={event => this.handleChange(event, 'description')}
                 />
               </FormGroup>
             </Col>
@@ -111,8 +119,23 @@ class ProductDetails extends React.Component {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={handleClick}>Close</Button>
-            <Button bsStyle="primary">Save changes</Button>
+            <Button
+              onClick={handleClick}
+            >
+              {'Close'}
+            </Button>
+            <Button
+              bsStyle="primary"
+              disabled={
+                description.length < 3
+                || productName.length < 3
+                || sku.length < 3
+                || mrp.length < 1
+                || parseFloat(mrp) < 1
+              }
+            >
+              {'Save changes'}
+            </Button>
           </Modal.Footer>
         </Modal>
       </div>
