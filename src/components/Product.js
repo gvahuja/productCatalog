@@ -1,22 +1,15 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-
-const styleBox = {
-  boxShadow: '3px 5px #888888',
-  padding: '5px',
-  marginTop: '20px',
-  border: '1px solid #BBBBBB',
-  borderRadius: '20px 20px',
-};
+import './Styles.css';
 
 const Product = (props) => {
   const { product } = props;
   return (
-    <Grid style={styleBox}>
+    <Grid className="product-card">
       <Row>
         <Col xs={2}>
-          <img src={product.img} alt={product.sku} style={{ alignSelf: 'center', height: '100px' }} />
+          <img src={product.img} alt={product.sku} className="product-img" />
         </Col>
         <Col xs={10}>
           <Row>

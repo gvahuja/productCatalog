@@ -1,0 +1,25 @@
+.full-height {
+  height: 100%;
+}
+
+.color-theme {
+  background-color: #000000;
+  color: #eeeeee;
+}
+
+.active {
+  background-color: #444444;
+}
+
+.product-card {
+  box-shadow: 3px 5px #888888;
+  padding: 5px;
+  margin-top: 20px;
+  border: 1px solid #BBBBBB;
+  border-radius: 20px 20px;
+}
+
+.product-img {
+  align-self: center;
+  height: 100px;
+}

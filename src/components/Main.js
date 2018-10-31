@@ -6,16 +6,17 @@ import {
 import Header from './Header';
 import Sidebar from './Sidebar';
 import ProductsList from './ProductsList';
+import './Styles.css';
 
 const Main = () => (
   <Router>
-    <Grid fluid style={{ height: '97%', margin: '10px' }}>
-      <Row style={{ height: '100%' }}>
-        <Col xs={2} style={{ height: '100%' }}>
+    <Grid fluid className="full-height">
+      <Row className="full-height">
+        <Col xs={2} className="full-height">
           <Sidebar />
         </Col>
         <Col xs={10}>
-          <Row style={{ backgroundColor: '#000000', color: '#eeeeee' }}>
+          <Row className="color-theme">
             <Header heading="Catalog Manager" />
           </Row>
           <Row>
