@@ -38,3 +38,9 @@
 .form-group-style {
   margin-bottom: 10px;
 }
+
+.form-control[disabled] {
+  background: #ffffff;
+  cursor: default;
+  border: none;
+}

@@ -1,9 +1,10 @@
 import React from 'react';
 import {
-  Modal, Button, Col, FormGroup, ControlLabel,
+  Modal, Button, Col, FormGroup, ControlLabel, FormControl, InputGroup,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import FieldGroup from './FieldGroup';
+import './Styles.css';
 
 class ProductDetails extends React.Component {
   constructor() {
@@ -11,7 +12,7 @@ class ProductDetails extends React.Component {
     this.state = {
       sku: '',
       productName: '',
-      mrp: '0',
+      mrp: 0,
       img: '',
       description: '',
     };
@@ -59,16 +60,22 @@ class ProductDetails extends React.Component {
               />
             </Col>
             <Col xs={6} className="form-group-style">
-              <FieldGroup
-                id="mrp"
-                label="M.R.P"
-                type="text"
-                value={mrp}
-                placeholder="Enter M.R.P"
-                onChange={event => this.handleChange(event, 'mrp')}
-              />
+              <FormGroup controlId="mrp">
+                <ControlLabel>M.R.P</ControlLabel>
+                <InputGroup>
+                  <InputGroup.Addon>&#8377;</InputGroup.Addon>
+                  <FormControl
+                    type="number"
+                    value={mrp}
+                    placeholder="Enter M.R.P"
+                    min="0"
+                    step=".1"
+                    onChange={event => this.handleChange(event, 'mrp')}
+                  />
+                </InputGroup>
+              </FormGroup>
             </Col>
-            <Col xs={6} className="form-group-style">
+            <Col xs={12} className="form-group-style">
               <FieldGroup
                 id="img"
                 label="Upload Product Image"
@@ -92,30 +99,6 @@ class ProductDetails extends React.Component {
                 />
               </FormGroup>
             </Col>
-            {/* <Col xs={12} className="form-group-style">
-              <Button
-                type="submit"
-                bsStyle="primary"
-                onClick={event => this.handleSubmit(event)}
-                disabled={
-                  description.length < 3
-                  || title.length < 3
-                  || label.length < 3
-                  || assignee.length < 3
-                  || dueDate.length < 10
-                }
-              >
-                Add Issue
-              </Button>
-              <Link to="/">
-                <Button
-                  type="reset"
-                  style={{ marginLeft: '10px' }}
-                >
-                  Cancel
-                </Button>
-              </Link>
-            </Col> */}
           </Modal.Body>
 
           <Modal.Footer>
@@ -130,8 +113,7 @@ class ProductDetails extends React.Component {
                 description.length < 3
                 || productName.length < 3
                 || sku.length < 3
-                || mrp.length < 1
-                || parseFloat(mrp) < 1
+                || mrp < 1
               }
             >
               {'Save changes'}
