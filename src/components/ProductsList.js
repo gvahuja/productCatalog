@@ -19,11 +19,11 @@ const products = [
   },
 ];
 
-const ProductsList = () => (
+const ProductsList = props => (
   <div className="scrollable">
     {
       products.map(product => (
-        <Product product={product} key={product.sku} />
+        <Product product={product} key={product.sku} handleState={props.handleState} />
       ))
     }
   </div>

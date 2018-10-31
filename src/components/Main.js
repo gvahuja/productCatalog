@@ -16,22 +16,40 @@ class Main extends React.Component {
     super();
     this.state = {
       show: false,
+      details: {},
+      state: 'add',
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleAdd = this.handleAdd.bind(this);
+    this.handleState = this.handleState.bind(this);
   }
 
-  handleClick() {
+  handleAdd() {
     this.setState(state => ({
       show: !state.show,
+      state: 'add',
+      details: {},
     }));
   }
 
+  handleState(state, details) {
+    this.setState({
+      show: true,
+      state,
+      details,
+    });
+  }
+
   render() {
-    const { show } = this.state;
+    const { show, details, state } = this.state;
     return (
       <Router>
         <Grid fluid className="full-height">
-          <ProductDetails show={show} handleClick={this.handleClick} />
+          <ProductDetails
+            show={show}
+            handleClick={this.handleAdd}
+            details={details}
+            state={state}
+          />
           <Row className="full-height">
             <Col xs={2} className="full-height">
               <Sidebar />
@@ -44,7 +62,7 @@ class Main extends React.Component {
                 <Col xs={4}>
                   <Button
                     className="pull-right"
-                    onClick={this.handleClick}
+                    onClick={this.handleAdd}
                   >
                     {'Add New Product'}
                   </Button>
@@ -52,7 +70,7 @@ class Main extends React.Component {
               </Row>
               <Row className="full-height">
                 <Switch>
-                  <Route path="/" component={ProductsList} />
+                  <Route path="/" render={() => <ProductsList handleState={this.handleState} />} />
                 </Switch>
               </Row>
             </Col>

@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import './Styles.css';
 
 const Product = (props) => {
-  const { product } = props;
+  const { product, handleState } = props;
   return (
-    <Grid className="product-card">
+    <Grid className="product-card" onClick={() => handleState('view', product)}>
       <Row>
         <Col xs={2}>
           <img src={product.img} alt={product.sku} className="product-img" />

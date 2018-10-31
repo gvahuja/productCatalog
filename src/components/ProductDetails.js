@@ -19,6 +19,27 @@ class ProductDetails extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { state, details } = nextProps;
+    if (state === 'add') {
+      this.setState({
+        sku: '',
+        productName: '',
+        mrp: 0,
+        img: '',
+        description: '',
+      });
+    } else {
+      this.setState({
+        sku: details.sku,
+        productName: details.productName,
+        mrp: details.mrp,
+        img: '',
+        description: details.description,
+      });
+    }
+  }
+
   handleChange(event, id) {
     const { value } = event.target;
     this.setState({
