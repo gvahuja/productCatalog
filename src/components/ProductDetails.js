@@ -51,12 +51,18 @@ class ProductDetails extends React.Component {
     const {
       sku, productName, mrp, img, description,
     } = this.state;
-    const { show, handleClick } = this.props;
+    const { show, state, handleClick } = this.props;
     return (
       <div className="static-modal">
         <Modal show={show} enforceFocus keyboard>
           <Modal.Header>
-            <Modal.Title>Add New Product</Modal.Title>
+            <Modal.Title>
+              {
+                state === 'add'
+                  ? 'Add new product'
+                  : productName
+              }
+            </Modal.Title>
           </Modal.Header>
 
           <Modal.Body className="col-xs-12">
@@ -67,6 +73,7 @@ class ProductDetails extends React.Component {
                 type="text"
                 value={productName}
                 placeholder="Enter Product Name"
+                disabled={state === 'view'}
                 onChange={event => this.handleChange(event, 'productName')}
               />
             </Col>
@@ -77,6 +84,7 @@ class ProductDetails extends React.Component {
                 type="text"
                 value={sku}
                 placeholder="Enter Stock Keeping Unit Code"
+                disabled={state === 'view'}
                 onChange={event => this.handleChange(event, 'sku')}
               />
             </Col>
@@ -91,6 +99,7 @@ class ProductDetails extends React.Component {
                     placeholder="Enter M.R.P"
                     min="0"
                     step=".1"
+                    disabled={state === 'view'}
                     onChange={event => this.handleChange(event, 'mrp')}
                   />
                 </InputGroup>
@@ -116,6 +125,7 @@ class ProductDetails extends React.Component {
                   row={5}
                   value={description}
                   placeholder="Add Description"
+                  disabled={state === 'view'}
                   onChange={event => this.handleChange(event, 'description')}
                 />
               </FormGroup>
@@ -137,7 +147,11 @@ class ProductDetails extends React.Component {
                 || mrp < 1
               }
             >
-              {'Save changes'}
+              {
+                state === 'view'
+                  ? 'Edit'
+                  : 'Save changes'
+              }
             </Button>
           </Modal.Footer>
         </Modal>
