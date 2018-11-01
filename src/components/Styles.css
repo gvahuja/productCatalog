@@ -21,7 +21,12 @@
 
 .product-img {
   align-self: center;
-  height: 100px;
+  height: 80px;
+}
+
+.view-img {
+  align-self: center;
+  height: 200px;
 }
 
 .scrollable {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Modal, Button, Col, FormGroup, ControlLabel, FormControl, InputGroup,
+  Modal, Button, Grid, Row, Col, FormGroup, ControlLabel, FormControl, InputGroup,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import FieldGroup from './FieldGroup';
@@ -17,6 +17,7 @@ class ProductDetails extends React.Component {
       description: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleImageChange = this.handleImageChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -35,7 +36,7 @@ class ProductDetails extends React.Component {
         sku: details.sku,
         productName: details.productName,
         mrp: details.mrp,
-        img: '',
+        img: details.img,
         description: details.description,
       });
     }
@@ -48,7 +49,13 @@ class ProductDetails extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleImageChange(event) {
+    this.setState({
+      img: window.URL.createObjectURL(event.target.files[0]),
+    });
+  }
+
+  handleSubmit() {
     // event.preventDefault();
     const { state, details, handleState } = this.props;
     if (state === 'view') {
@@ -69,78 +76,95 @@ class ProductDetails extends React.Component {
           <Modal.Header>
             <Modal.Title>
               {
+                // eslint-disable-next-line
                 state === 'add'
                   ? 'Add new product'
-                  : productName
+                  : state === 'edit' ? 'Update product details' : productName
               }
             </Modal.Title>
           </Modal.Header>
 
           <Modal.Body className="col-xs-12">
-            <Col xs={12} className="form-group-style">
-              <FieldGroup
-                id="productName"
-                label="Product Name"
-                type="text"
-                value={productName}
-                placeholder="Enter Product Name"
-                disabled={state === 'view'}
-                onChange={event => this.handleChange(event, 'productName')}
-              />
-            </Col>
-            <Col xs={6} className="form-group-style">
-              <FieldGroup
-                id="sku"
-                label="Stock Keeping Unit Code"
-                type="text"
-                value={sku}
-                placeholder="Enter Stock Keeping Unit Code"
-                disabled={state === 'view'}
-                onChange={event => this.handleChange(event, 'sku')}
-              />
-            </Col>
-            <Col xs={6} className="form-group-style">
-              <FormGroup controlId="mrp">
-                <ControlLabel>M.R.P</ControlLabel>
-                <InputGroup>
-                  <InputGroup.Addon>&#8377;</InputGroup.Addon>
-                  <FormControl
-                    type="number"
-                    value={mrp}
-                    placeholder="Enter M.R.P"
-                    min="0"
-                    step=".1"
-                    disabled={state === 'view'}
-                    onChange={event => this.handleChange(event, 'mrp')}
+            <Grid className="col-xs-12">
+              <Row>
+                <Col
+                  xs={state === 'view' ? 6 : 2}
+                  xsOffset={state === 'view' ? 3 : 0}
+                  hidden={img === ''}
+                >
+                  <img src={img} alt="Product_Image" className={state === 'view' ? 'view-img' : 'product-img'} />
+                </Col>
+                <Col xs={10} hidden={state === 'view'} className="form-group-style">
+                  <FieldGroup
+                    id="img"
+                    label={state === 'add' ? 'Upload Product Image' : 'Update Product Image'}
+                    type="file"
+                    accept="image/*"
+                    onChange={event => this.handleImageChange(event)}
                   />
-                </InputGroup>
-              </FormGroup>
-            </Col>
-            <Col xs={12} className="form-group-style">
-              <FieldGroup
-                id="img"
-                label="Upload Product Image"
-                type="file"
-                // value={img}
-                // placeholder=""
-                // onChange={event => this.handleChange(event, 'issueDueDate')}
-              />
-            </Col>
-            <Col xs={12} className="form-group-style">
-              <FormGroup
-                controlId="description"
-              >
-                <ControlLabel>Description</ControlLabel>
-                <textarea
-                  className="form-control"
-                  row={5}
-                  value={description}
-                  placeholder="Add Description"
-                  disabled={state === 'view'}
-                  onChange={event => this.handleChange(event, 'description')}
-                />
-              </FormGroup>
-            </Col>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12} hidden={state === 'view'} className="form-group-style">
+                  <FieldGroup
+                    id="productName"
+                    label="Product Name"
+                    type="text"
+                    value={productName}
+                    placeholder="Enter Product Name"
+                    disabled={state === 'view'}
+                    onChange={event => this.handleChange(event, 'productName')}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={6} className="form-group-style">
+                  <FieldGroup
+                    id="sku"
+                    label="Stock Keeping Unit Code"
+                    type="text"
+                    value={sku}
+                    placeholder="Enter Stock Keeping Unit Code"
+                    disabled={state === 'view'}
+                    onChange={event => this.handleChange(event, 'sku')}
+                  />
+                </Col>
+                <Col xs={6} className="form-group-style">
+                  <FormGroup controlId="mrp">
+                    <ControlLabel>M.R.P</ControlLabel>
+                    <InputGroup>
+                      <InputGroup.Addon>&#8377;</InputGroup.Addon>
+                      <FormControl
+                        type="number"
+                        value={mrp}
+                        placeholder="Enter M.R.P"
+                        min="0"
+                        step=".1"
+                        disabled={state === 'view'}
+                        onChange={event => this.handleChange(event, 'mrp')}
+                      />
+                    </InputGroup>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12} className="form-group-style">
+                  <FormGroup
+                    controlId="description"
+                  >
+                    <ControlLabel>Description</ControlLabel>
+                    <textarea
+                      className="form-control"
+                      row={5}
+                      value={description}
+                      placeholder="Add Description"
+                      disabled={state === 'view'}
+                      onChange={event => this.handleChange(event, 'description')}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+            </Grid>
           </Modal.Body>
 
           <Modal.Footer>
