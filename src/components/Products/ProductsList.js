@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Grid } from 'react-bootstrap';
 import Product from './Product';
 import '../../styles/Styles.css';
 
 const ProductsList = (props) => {
   const { products } = props;
   return (
-    <div className="scrollable">
+    <Grid className="scrollable col-xs-12">
       {
         products.map(product => (
           <Product product={product} key={product.sku} handleState={props.handleState} />
         ))
       }
-    </div>
+    </Grid>
   );
 };
 

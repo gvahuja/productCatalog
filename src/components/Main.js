@@ -107,9 +107,11 @@ class Main extends React.Component {
                 </Col>
               </Row>
               <Row className="full-height">
-                <Switch>
-                  <Route path="/" render={() => <ProductsList handleState={this.handleState} products={products} />} />
-                </Switch>
+                <Col xs={12}>
+                  <Switch>
+                    <Route path="/" render={() => <ProductsList handleState={this.handleState} products={products} />} />
+                  </Switch>
+                </Col>
               </Row>
             </Col>
           </Row>
