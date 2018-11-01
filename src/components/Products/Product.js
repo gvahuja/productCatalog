@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import './Styles.css';
+import '../../styles/Styles.css';
 
 const Product = (props) => {
   const { product, handleState } = props;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Well } from 'react-bootstrap';
-import './Styles.css';
+import '../../styles/Styles.css';
 
 const Sidebar = () => (
   <div className="full-height color-theme">

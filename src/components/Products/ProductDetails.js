@@ -3,8 +3,8 @@ import {
   Modal, Button, Grid, Row, Col, FormGroup, ControlLabel, FormControl, InputGroup,
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import FieldGroup from './FieldGroup';
-import './Styles.css';
+import FieldGroup from '../Basic/FieldGroup';
+import '../../styles/Styles.css';
 
 class ProductDetails extends React.Component {
   constructor() {

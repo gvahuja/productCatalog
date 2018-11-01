@@ -5,11 +5,11 @@ import {
 import {
   BrowserRouter as Router, Route, Switch,
 } from 'react-router-dom';
-import Header from './Header';
-import Sidebar from './Sidebar';
-import ProductsList from './ProductsList';
-import './Styles.css';
-import ProductDetails from './ProductDetails';
+import Header from './Basic/Header';
+import Sidebar from './Basic/Sidebar';
+import ProductsList from './Products/ProductsList';
+import '../styles/Styles.css';
+import ProductDetails from './Products/ProductDetails';
 
 const productsData = [
   {
