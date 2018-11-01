@@ -57,11 +57,15 @@ class ProductDetails extends React.Component {
 
   handleSubmit() {
     // event.preventDefault();
-    const { state, details, handleState } = this.props;
+    const {
+      state, details, handleClick, handleState, updateProducts,
+    } = this.props;
     if (state === 'view') {
       handleState('edit', details);
     } else {
       // onsubmit add or change details
+      updateProducts(this.state);
+      handleClick();
     }
   }
 
@@ -202,6 +206,7 @@ ProductDetails.propTypes = {
   details: PropTypes.shape({}).isRequired,
   handleClick: PropTypes.func.isRequired,
   handleState: PropTypes.func.isRequired,
+  updateProducts: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
