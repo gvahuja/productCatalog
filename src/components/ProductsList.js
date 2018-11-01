@@ -16,7 +16,7 @@ const products = [
     productName: 'Bisleri 1000ml',
     mrp: '20',
     img: '../assets/bis1007.png',
-    Description: 'Bisleri 1000ml',
+    description: 'Bisleri 1000ml',
   },
 ];
 

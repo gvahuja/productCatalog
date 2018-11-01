@@ -46,9 +46,10 @@ class Main extends React.Component {
         <Grid fluid className="full-height">
           <ProductDetails
             show={show}
-            handleClick={this.handleAdd}
             details={details}
             state={state}
+            handleClick={this.handleAdd}
+            handleState={this.handleState}
           />
           <Row className="full-height">
             <Col xs={2} className="full-height">

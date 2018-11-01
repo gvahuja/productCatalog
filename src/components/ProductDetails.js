@@ -17,6 +17,7 @@ class ProductDetails extends React.Component {
       description: '',
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,6 +46,16 @@ class ProductDetails extends React.Component {
     this.setState({
       [id]: value,
     });
+  }
+
+  handleSubmit(event) {
+    // event.preventDefault();
+    const { state, details, handleState } = this.props;
+    if (state === 'view') {
+      handleState('edit', details);
+    } else {
+      // onsubmit add or change details
+    }
   }
 
   render() {
@@ -146,6 +157,7 @@ class ProductDetails extends React.Component {
                 || sku.length < 3
                 || mrp < 1
               }
+              onClick={this.handleSubmit}
             >
               {
                 state === 'view'
@@ -162,9 +174,10 @@ class ProductDetails extends React.Component {
 
 ProductDetails.propTypes = {
   show: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
   state: PropTypes.string.isRequired,
   details: PropTypes.shape({}).isRequired,
+  handleClick: PropTypes.func.isRequired,
+  handleState: PropTypes.func.isRequired,
 };
 
 export default ProductDetails;
